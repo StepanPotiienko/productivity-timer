@@ -5,8 +5,6 @@ import (
     "github.com/gin-gonic/gin"
 )
 
-var timer float32 = 0.0
-
 func main() {
     router := gin.New()
 
@@ -15,7 +13,7 @@ func main() {
     router.LoadHTMLGlob("template/*.html")
 
     router.GET("/", func(c *gin.Context) {
-        c.HTML(http.StatusOK, "index.html", gin.H{"timer": timer})
+        c.HTML(http.StatusOK, "index.html", gin.H{})
     })
 
     if err := router.Run(); err != nil {
