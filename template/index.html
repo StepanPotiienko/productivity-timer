@@ -4,13 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/index.css">
-    <title>Timer</title>
+    <title>Productivity Timer</title>
 </head>
 <body>
-  <div>
-    <h1>Timer</h1>
-    <div id="timer"><span id="minutes">00</span>:<span id="seconds">00</span></div>
-    <div class="controls">
+  <div id="timer">
+    <h1>Intense Work Period</h1>
+    <div id="timer">
+      <span id="hours">00</span>
+      :
+      <span id="minutes">00</span>
+      :
+      <span id="seconds">00</span>
+    </div>
+    <div id="controls">
       <button onclick="updateState()">Start</button>
       <button onclick="updateState()">Pause</button>
       <button onclick="resetTimer()">Reset</button>

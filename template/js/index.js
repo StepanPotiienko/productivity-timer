@@ -1,10 +1,6 @@
-// TODO: Add hours (+display).
-// TODO: Think of a better way of displaying seconds and minutes.
-let secondsPassed = 0
-let minutesPassed = 0
-
-let displaySeconds = new String() 
-let displayMinutes = new String() 
+let secondsPassed = 0 
+let minutesPassed = 0 
+let hoursPassed = 0 
 
 let isRunning = false
 
@@ -12,33 +8,37 @@ function updateState() {
   isRunning = !isRunning
 }
 
+// TODO: Find a way to simplify function.
 function preventTimeForOverwhelming() {
   if (secondsPassed / 59 == 1) {
     secondsPassed = 0
     minutesPassed += 1
   }
+
+  if (minutesPassed / 59 == 1) {
+    minutesPassed = 0
+    hoursPassed += 1
+  }
 }
 
-function displayData() {
-  displaySeconds = `0${secondsPassed}`
-  displayMinutes = `0${minutesPassed}`
+function Display(passed, id) {
+  let buffer = "0" + passed.toString()
 
-  if (secondsPassed >= 10) {
-    displaySeconds = `${secondsPassed}`
+  if (passed >= 10) {
+    buffer = `${passed}`
   }
 
-  if (minutesPassed >= 10) {
-    displayMinutes = `${minutesPassed}`
-  }
-
-  document.getElementById("seconds").innerText = displaySeconds 
-  document.getElementById("minutes").innerText = displayMinutes 
+  document.getElementById(id).innerText = buffer
 }
 
 function updateTimer() {
   if (isRunning) {
     preventTimeForOverwhelming()
-    displayData()
+
+    Display(secondsPassed, "seconds")
+    Display(minutesPassed, "minutes")
+    Display(hoursPassed, "hours")
+    
     secondsPassed += 1
   }
 }
@@ -46,6 +46,7 @@ function updateTimer() {
 function resetTimer() {
   secondsPassed = 0
   minutesPassed = 0
+  hoursPassed = 0
   isRunning = false
   
   displayData()
