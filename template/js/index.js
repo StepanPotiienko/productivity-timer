@@ -1,6 +1,6 @@
-let secondsPassed = 0 
-let minutesPassed = 0 
-let hoursPassed = 0 
+let secondsPassed = 0
+let minutesPassed = 0
+let hoursPassed = 0
 
 let isRunning = false
 
@@ -38,7 +38,7 @@ function updateTimer() {
     Display(secondsPassed, "seconds")
     Display(minutesPassed, "minutes")
     Display(hoursPassed, "hours")
-    
+
     secondsPassed += 1
   }
 }
@@ -48,9 +48,9 @@ function resetTimer() {
   minutesPassed = 0
   hoursPassed = 0
   isRunning = false
-  
+
   displayData()
-} 
+}
 
 // Update timer every second
 setInterval(updateTimer, 1000)
