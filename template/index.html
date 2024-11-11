@@ -1,31 +1,36 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/index.css" />
-    <title>Productivity Timer</title>
-  </head>
-  <body>
-    <div class="container">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./css/index.css" />
+  <title>Productivity Timer</title>
+</head>
+
+<body onload="GrantNotificationPermission()">
+  <div class="container">
+    <div id="timer">
+      <h1>Intense Work Period</h1>
       <div id="timer">
-        <h1>Intense Work Period</h1>
-        <div id="timer">
-          <div id="display">
-            <span id="hours">00</span>
-            :
-            <span id="minutes">00</span>
-            :
-            <span id="seconds">00</span>
-          </div>
-        </div>
-        <div id="controls">
-          <button onclick="updateState()">Start</button>
-          <button onclick="updateState()">Pause</button>
-          <button onclick="resetTimer()">Reset</button>
+        <div id="display">
+          <span id="hours">00</span>
+          :
+          <span id="minutes">00</span>
+          :
+          <span id="seconds">00</span>
         </div>
       </div>
+      <div id="controls">
+        <button onclick="updateState()" id="start-btn">Start</button>
+        <button onclick="updateState()">Pause</button>
+        <button onclick="resetTimer()">Reset</button>
+      </div>
     </div>
-    <script type="text/javascript" src="./js/index.js"></script>
-  </body>
+  </div>
+  <script type="text/javascript" src="./js/index.js"></script>
+  <script type="text/javascript" src="./js/notification.js"></script>
+  <noscript>In order for application to work correctly, you should enable JavaScript.</noscript>
+</body>
+
 </html>

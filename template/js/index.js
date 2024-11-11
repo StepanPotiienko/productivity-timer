@@ -4,6 +4,11 @@ let hoursPassed = 0
 
 let isRunning = false
 
+
+document.getElementById("start-btn").addEventListener("click", function () {
+  SendNotification("Starting intense work period.")
+})
+
 function updateState() {
   isRunning = !isRunning
 }
@@ -49,7 +54,9 @@ function resetTimer() {
   hoursPassed = 0
   isRunning = false
 
-  displayData()
+  Display(secondsPassed, "seconds")
+  Display(minutesPassed, "minutes")
+  Display(hoursPassed, "hours")
 }
 
 // Update timer every second
