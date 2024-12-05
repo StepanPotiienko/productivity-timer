@@ -11,7 +11,6 @@ function GrantNotificationPermission() {
     }
 }
 
-
 function SendNotification(details) {
     if (NotificationPermission) new Notification(title = details)
 }
