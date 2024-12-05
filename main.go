@@ -5,6 +5,7 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/gin-gonic/gin"
 )
@@ -25,7 +26,7 @@ func main() {
 		})
 	})
 
-	if err := router.Run(":8080"); err != nil {
+	if err := router.Run(":%v", os.Getenv("PORT")); err != nil {
 		log.Fatalf("Failed to start server: %v", err)
 	}
 }
