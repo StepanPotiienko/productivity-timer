@@ -36,12 +36,14 @@ func main() {
 		})
 	})
 
+	var port string = os.Getenv("SERVER_PORT")
+
 	if _, ok := os.LookupEnv("SERVER_PORT"); !ok {
-		log.Fatalf("Port cannot be an empty string!")
+		fmt.Println("Cannot load port from .env! Using default insted...")
+		port = "8080"
 		os.Exit(1)
 	}
 
-	var port string = os.Getenv("SERVER_PORT")
 	var runAddress string = fmt.Sprintf(":%s", port)
 
 	if err := router.Run(runAddress); err != nil {
