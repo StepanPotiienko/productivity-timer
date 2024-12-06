@@ -1,16 +1,17 @@
 let NotificationPermission = window.localStorage.getItem("NotificationPermission")
 
-function GrantNotificationPermission() {
-    if ("Notification" in window && !NotificationPermission) {
-        Notification.requestPermission().then(function (permission) {
-            if (permission == 'granted') {
-                window.localStorage.setItem("NotificationPermission", true)
-                SendNotification("Thank you.")
-            }
-        })
+navigator.serviceWorker.register('./sw.js');
+Notification.requestPermission(function (result) {
+    if (result === 'granted') {
+        navigator.serviceWorker.ready.then(function (registration) {
+            window.localStorage.setItem("NotificationPermission", true)
+            registration.showNotification("Thank you.")
+        });
     }
-}
+});
 
 function SendNotification(details) {
-    if (NotificationPermission) new Notification(title = details)
+    navigator.serviceWorker.ready.then(function (registration) {
+        registration.showNotification(details)
+    });
 }
