@@ -14,16 +14,13 @@ function updateState() {
 }
 
 // TODO: Find a way to simplify function.
-function preventTimeForOverwhelming() {
-  if (secondsPassed / 59 == 1) {
-    secondsPassed = 0
-    minutesPassed += 1
+function preventTimeForOverwhelming(smaller, bigger) {
+  if (smaller / 59 == 1) {
+    smaller = 0
+    bigger += 1
   }
 
-  if (minutesPassed / 59 == 1) {
-    minutesPassed = 0
-    hoursPassed += 1
-  }
+  return [smaller, bigger]
 }
 
 function Display(passed, id) {
@@ -38,7 +35,12 @@ function Display(passed, id) {
 
 function updateTimer() {
   if (isRunning) {
-    preventTimeForOverwhelming()
+    // I am still not proud of the solution. D:
+    secondsPassed = preventTimeForOverwhelming(secondsPassed, minutesPassed)[0]
+    minutesPassed = preventTimeForOverwhelming(secondsPassed, minutesPassed)[1]
+
+    minutesPassed = preventTimeForOverwhelming(minutesPassed, hoursPassed)[0]
+    hoursPassed = preventTimeForOverwhelming(minutesPassed, hoursPassed)[1]
 
     Display(secondsPassed, "seconds")
     Display(minutesPassed, "minutes")
