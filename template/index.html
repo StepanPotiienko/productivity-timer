@@ -10,9 +10,14 @@
 
 <body>
   <div class="container">
-    <div id="timer">
-      <h1>Intense Work Period</h1>
+    <div id="window">
+      <div id="window-controls">
+        <div id="close" class="circle"></div>
+        <div id="hide" class="circle"></div>
+        <div id="fullscreen" class="circle"></div>
+      </div>
       <div id="timer">
+        <h1>Intense Work Period</h1>
         <div id="display">
           <span id="hours">00</span>
           :
@@ -20,19 +25,17 @@
           :
           <span id="seconds">00</span>
         </div>
-      </div>
-      <div id="controls">
-        <button onclick="updateState()" id="start-btn">Start</button>
-        <button onclick="updateState()">Pause</button>
-        <button onclick="resetTimer()">Reset</button>
-      </div>
-      <div id="quote">
-        <p>{{.quote}}</p>
-        <span>{{.author}}</span><br />
-        Inspirational quotes provided by <a href="https://zenquotes.io/" target="_blank">ZenQuotes API</a>
+        <div id="controls">
+          <button onclick="updateState()" id="start-btn">Start</button>
+          <button onclick="updateState()">Pause</button>
+          <button onclick="resetTimer()">Reset</button>
+        </div>
       </div>
     </div>
   </div>
+
+  <!-- On scroll there should be a list of all the work periods user has had. -->
+
   <script type="text/javascript" src="./js/index.js"></script>
   <script type="text/javascript" src="./js/notification.js"></script>
   <noscript>In order for application to work correctly, you should enable JavaScript.</noscript>
