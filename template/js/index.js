@@ -13,16 +13,6 @@ function updateState() {
   isRunning = !isRunning
 }
 
-// TODO: Find a way to simplify function.
-function preventTimeForOverwhelming(smaller, bigger) {
-  if (smaller / 59 == 1) {
-    smaller = 0
-    bigger += 1
-  }
-
-  return [smaller, bigger]
-}
-
 function Display(passed, id) {
   let buffer = "0" + passed.toString()
 
@@ -35,12 +25,15 @@ function Display(passed, id) {
 
 function updateTimer() {
   if (isRunning) {
-    // I am still not proud of the solution. D:
-    secondsPassed = preventTimeForOverwhelming(secondsPassed, minutesPassed)[0]
-    minutesPassed = preventTimeForOverwhelming(secondsPassed, minutesPassed)[1]
+    if (secondsPassed === 60) {
+      secondsPassed = 0;
+      minutesPassed += 1;
+    }
 
-    minutesPassed = preventTimeForOverwhelming(minutesPassed, hoursPassed)[0]
-    hoursPassed = preventTimeForOverwhelming(minutesPassed, hoursPassed)[1]
+    if (minutesPassed === 60) {
+      minutesPassed = 0;
+      hoursPassed += 1;
+    }
 
     Display(secondsPassed, "seconds")
     Display(minutesPassed, "minutes")
