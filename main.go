@@ -16,7 +16,7 @@ func main() {
 	err := godotenv.Load()
 
 	if err != nil {
-		log.Println("Error loading .env file...")
+		log.Println("Error loading .env file. Proceeding with the default values.")
 	}
 
 	router := gin.Default()
@@ -36,14 +36,16 @@ func main() {
 		})
 	})
 
-	var port string = os.Getenv("SERVER_PORT")
+	port, exists := os.LookupEnv("PORT")
 
-	if _, ok := os.LookupEnv("SERVER_PORT"); !ok {
-		fmt.Println("Cannot load port from .env! Using default insted...")
+	if !exists {
+		log.Println("PORT not set; falling back to default 8080")
 		port = "8080"
 	}
 
-	var runAddress string = fmt.Sprintf(":%s", port)
+	runAddress := fmt.Sprintf(":%s", port)
+
+	log.Printf("Starting server on %s...", runAddress)
 
 	if err := router.Run(runAddress); err != nil {
 		log.Fatalf("Failed to start server: %v", err)
