@@ -11,7 +11,6 @@ self.addEventListener('install', function (event) {
         )
     } catch (error) {
         console.log(error)
-
     }
 })
 
