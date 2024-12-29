@@ -26,18 +26,21 @@
           <span id="seconds">00</span>
         </div>
         <div id="controls">
+
           <button onclick="updateState()" id="start-btn">Start</button>
           <button onclick="updateState()">Pause</button>
           <button onclick="resetTimer()">Reset</button>
         </div>
+
+        <input type="text" name="title" id="title-entry" placeholder="Doing dishes...">
       </div>
     </div>
   </div>
   <div id="periods-list">
     <ul>
       <li>
-        <div>
-          <h3>Time Passed</h3>
+        <div class="period">
+          <span></span>
         </div>
       </li>
     </ul>
