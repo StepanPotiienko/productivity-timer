@@ -26,19 +26,24 @@
           <span id="seconds">00</span>
         </div>
         <div id="controls">
+
           <button onclick="updateState()" id="start-btn">Start</button>
           <button onclick="updateState()">Pause</button>
           <button onclick="resetTimer()">Reset</button>
         </div>
+
+        <input type="text" name="title" id="title-entry" value="Unnamed period" placeholder="Name your sprint...">
       </div>
     </div>
   </div>
 
-  <!-- On scroll there should be a list of all the work periods user has had. -->
+  <div id="periods-list">
+    <ul></ul>
+  </div>
 
-  <script type="text/javascript" src="./js/index.js"></script>
-  <script type="text/javascript" src="./js/notification.js"></script>
   <noscript>In order for application to work correctly, you should enable JavaScript.</noscript>
 </body>
+<script type="text/javascript" src="./js/index.js"></script>
+<script type="text/javascript" src="./js/notification.js"></script>
 
 </html>

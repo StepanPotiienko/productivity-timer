@@ -10,8 +10,6 @@
 }
 
 body {
-  height: 100vh;
-  width: 100vw;
   user-select: none;
   background-image: url("/media/images/wallpaper.jpg");
   background-position: center;
@@ -21,10 +19,47 @@ body {
 
 .container {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+#title-entry {
+  margin-top: 3vh;
+  width: 100%;
+  border: none;
+  border-bottom: 3px solid rgba(0, 0, 0, 0.8);
+  font-size: 1.5rem;
+}
+
+#periods-list {
+  width: 100%;
+  height: 100vh;
+  padding: 1%;
+  background-color: white;
+}
+
+#periods-list ul {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+}
+
+.period {
+  text-align: center;
+  flex: 0 1 calc(20% - 20px);
+  max-width: calc(20% - 20px);
+  padding: 1%;
+  height: auto;
+  min-width: 5vw;
+  max-width: 30vw;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8);
+  font-size: 1.5rem;
+  border: 1px solid #000;
 }
 
 #window {
@@ -95,11 +130,15 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 10pt;
+}
+
+#timer h1 {
+  font-size: 32pt;
 }
 
 #timer #display {
-  font-size: 1.4rem;
+  font-size: 2rem;
 }
 
 #controls {
@@ -118,7 +157,7 @@ body {
   border-radius: 5px;
   background: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.8));
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 1.1rem;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
@@ -189,12 +228,19 @@ body {
 }
 
 @media screen and (max-width: 696px) {
+  #timer {
+    width: 100%;
+    display: flex;
+    gap: 12pt;
+  }
+
   #controls {
+    width: 100%;
     flex-direction: column;
     gap: 12pt;
   }
 
   #controls button {
-    width: 80%;
+    width: 100%;
   }
 }
