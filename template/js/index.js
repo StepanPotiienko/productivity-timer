@@ -3,29 +3,56 @@ let minutesPassed = 0;
 let hoursPassed = 0;
 
 let isRunning = false;
-let periods = [];
+let periods = getLocalStorage("periods") || [];
 
-document.getElementById("start-btn").addEventListener("click", function () {
-  sendNotification("Starting intense work period.");
-});
+function updateLocalStorage(key, list) {
+  localStorage.setItem(key, JSON.stringify(list));
+}
+
+function removeLocalStorage(key) {
+  localStorage.removeItem(key);
+}
+
+function getLocalStorage(key) {
+  const data = localStorage.getItem(key);
+  return data ? JSON.parse(data) : null;
+}
+
+function populatePeriodsList() {
+  const list = document.querySelector("#periods-list ul");
+  list.innerHTML = ""; // Clear the list before populating
+
+  periods.forEach(([title, timeData]) => {
+    const periodItem = document.createElement("li");
+    periodItem.classList.add("period-item");
+
+    periodItem.innerHTML = `
+      <div class="period">
+        <span>${title || "Unnamed Period"}<br>${formatTime(timeData.hours)}:${formatTime(timeData.minutes)}:${formatTime(timeData.seconds)}</span>
+      </div>
+    `;
+
+    list.appendChild(periodItem);
+  });
+}
 
 function addPeriod() {
-  const title = document.getElementById("title-entry").value.trim();
+  const title = document.getElementById("title-entry").value.trim() || "Unnamed Period";
   const periodData = createPeriodData(secondsPassed, minutesPassed, hoursPassed);
 
-  const displayTitle = title || "Unnamed Period";
-
-  const periodList = document.querySelector("#periods-list ul"); // Ensure we target the correct <ul>
+  const list = document.querySelector("#periods-list ul");
   const periodItem = document.createElement("li");
   periodItem.classList.add("period-item");
 
   periodItem.innerHTML = `
     <div class="period">
-      <span>${displayTitle} - ${formatTime(periodData.hours)}:${formatTime(periodData.minutes)}:${formatTime(periodData.seconds)}</span>
+      <span>${title}<br>${formatTime(periodData.hours)}:${formatTime(periodData.minutes)}:${formatTime(periodData.seconds)}</span>
     </div>
   `;
 
-  periodList.appendChild(periodItem);
+  list.appendChild(periodItem);
+  periods.push([title, periodData]);
+  updateLocalStorage("periods", periods);
 }
 
 function updateState() {
@@ -33,7 +60,7 @@ function updateState() {
 }
 
 function display(passed, id) {
-  document.getElementById(id).innerText = formatTime(passed); // Reuse formatTime
+  document.getElementById(id).innerText = formatTime(passed);
 }
 
 function updateTimer() {
@@ -77,9 +104,9 @@ function formatTime(value) {
   return value < 10 ? `0${value}` : `${value}`;
 }
 
-function sendNotification(message) {
-  console.log(message);
-}
+// Call populatePeriodsList on page load
+document.addEventListener("DOMContentLoaded", () => {
+  populatePeriodsList();
+});
 
 setInterval(updateTimer, 1000);
-

@@ -25,27 +25,40 @@ body {
   justify-content: center;
 }
 
-input {
+#title-entry {
+  margin-top: 3vh;
   width: 100%;
-  height: 5%;
   border: none;
-  border-bottom: 2px solid #000;
-  outline: none;
+  border-bottom: 3px solid rgba(0, 0, 0, 0.8);
   font-size: 1.5rem;
-}
-
-input:active {
-  text-align: left;
 }
 
 #periods-list {
   width: 100%;
   height: 100vh;
+  padding: 1%;
   background-color: white;
-  font-size: 2rem;
 }
 
-#periods-list .period {
+#periods-list ul {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+}
+
+.period {
+  text-align: center;
+  flex: 0 1 calc(20% - 20px);
+  max-width: calc(20% - 20px);
+  padding: 1%;
+  height: auto;
+  min-width: 5vw;
+  max-width: 30vw;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8);
+  font-size: 1.5rem;
   border: 1px solid #000;
 }
 
